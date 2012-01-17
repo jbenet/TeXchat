@@ -3,8 +3,10 @@ define([
   'underscore',
   'backbone',
   'texchat',
-  'util/util'
-  ], function($, _, Backbone, TeXchat, Util) {
+  'util/util',
+
+  'views/chat',
+  ], function($, _, Backbone, TeXchat, Util, ChatView) {
 
 // View
 
@@ -18,7 +20,8 @@ var RoomView = Backbone.View.extend({
   },
 
   initialize: function() {
-    // this.chatView = new ChatView({model: this.model});
+    this.chatView = new ChatView({el: '#chat'});
+    this.previewView = new ChatView({el: '#send-preview'});
     // this.userlistView = new UserlistView({model: this.model});
   },
 
@@ -27,22 +30,21 @@ var RoomView = Backbone.View.extend({
     // set name
     $(this.el).find('#name').text(this.model.get('name'));
 
-    // this.chatView.render();
+    this.chatView.render();
+    this.previewView.render();
     // this.userlistView.render();
   },
 
-  msgTemplate: _.template('<div class="chat-message">\
-      <span class="date"><%- date %></span>\
-      <span class="name"><%- name %>:</span>\
-      <span class="text"><%- text %></span>\
-    </div>\
-  '),
-  // html-escape all values
-
   sendMessage: function() {
+    var msg = this.message();
+
+    // append message to chat for now.
+    if (msg.text)
+      this.chatView.appendMessage(msg);
 
     // clear send box.
     $(this.el).find('#send-text').val('');
+    this.previewView.clear();
   },
 
   message: function() {
@@ -58,18 +60,17 @@ var RoomView = Backbone.View.extend({
       this.sendMessage();
     }
     // preview text for anything typed in (enter ought to clear it).
-    var html = this.elSendBox().val() ? this.msgTemplate(this.message()) : '';
-    this.elSendPreview().html(html);
-    Util.rendered(this.elSendPreview());
+
+    this.previewView.clear();
+    var msg = this.message();
+    if (msg.text) {
+      this.previewView.appendMessage(msg);
+    }
   },
 
   elSendBox: function() {
     return $(this.el).find('#send-text');
   },
-
-  elSendPreview: function() {
-    return $(this.el).find('#send-preview');
-  }
 
 });
 

@@ -17,6 +17,10 @@ var Utils = {
 
   },
 
+  randomInt: function(order) {
+    return Math.round(Math.random() * Math.pow(10, order || 5));
+  },
+
   // escape resource names (turning odd chars into -)
   escape : function(str) {
     str = str.trim();
