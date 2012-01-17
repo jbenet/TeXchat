@@ -55,6 +55,9 @@
             <div class="well span9" id='chat'>
             </div>
 
+            <div class="well span9" id='send-preview'>
+            </div>
+
             <div class='row'>
               <div class='span8'>
                 <textarea id="send-text" name="send"
@@ -88,6 +91,12 @@
     <small>{{date}}</small> <strong>{{user}}</strong>: {{text}}
   </div>
   </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+  </script>
+
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   <script type="text/javascript" src="/socket.io/socket.io.js"></script>
   <script data-main="js/main" src="/js/libs/require/require.js"></script>

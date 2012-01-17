@@ -27,6 +27,21 @@ var Utils = {
   },
 
 
+  rendered: function(selector) {
+
+    // process any links
+
+    // process any tex
+    try {
+      MathJax.Hub.Queue(["Typeset", MathJax.Hub, $(selector).attr('id')]);
+    } catch (err) {
+      if (err.type != 'not_defined')
+        console.log(err);
+    }
+
+    return $(selector);
+  },
+
 
 };
 
