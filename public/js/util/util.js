@@ -46,6 +46,17 @@ var Utils = {
     return $(selector);
   },
 
+  scrollToBottom: function(selector, options) {
+    options = _.extend({}, options);
+
+    var prop = {scrollTop: $(selector).prop('scrollHeight') };
+    if (options.animate) {
+      $(selector).stop();
+      $(selector).animate(prop);
+    } else {
+      $(selector).prop(prop);
+    }
+  },
 
 };
 

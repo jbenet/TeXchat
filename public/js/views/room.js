@@ -39,11 +39,14 @@ var RoomView = Backbone.View.extend({
     var msg = this.message();
 
     // append message to chat for now.
-    if (msg.text)
+    if (msg.text) {
       this.chatView.appendMessage(msg);
+      Util.scrollToBottom(this.chatView.el, {animate: true});
+      TeXchat.view.resize();
+    }
 
     // clear send box.
-    $(this.el).find('#send-text').val('');
+    this.elSendBox().val('');
     this.previewView.clear();
   },
 
