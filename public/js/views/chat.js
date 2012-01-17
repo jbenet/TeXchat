@@ -27,6 +27,7 @@ var ChatView = Backbone.View.extend({
 
   appendMessage: function(message) {
     if (message) {
+
       // render the message
       var elMsg = $(this.msgTemplate(message));
 
@@ -37,7 +38,7 @@ var ChatView = Backbone.View.extend({
       $(this.el).append(elMsg);
 
       // signal that we've rendered and added this elem (for mathjax, etc)
-      Util.rendered($(this.el));
+      Util.rendered(elMsg);
     }
   },
 

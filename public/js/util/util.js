@@ -31,9 +31,20 @@ var Utils = {
   },
 
 
+  link_re: /(http:\/\/)([^ <>]*)/g,
   rendered: function(selector) {
 
+    var html = $(selector).html().trim();
+
+    // honor carriage returns.
+    html = html.replace(/\n/g, '<br />');
+
     // process any links
+    html = html.replace(this.link_re,
+      "<a target='_blank' href='http://$2'>$&</a>");
+
+    $(selector).html(html);
+
 
     // process any tex
     try {

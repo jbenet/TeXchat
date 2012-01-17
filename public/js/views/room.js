@@ -53,14 +53,16 @@ var RoomView = Backbone.View.extend({
   message: function() {
     return {
       name: TeXchat.username(),
-      text: this.elSendBox().val(),
+      text: this.elSendBox().val().trim(),
       date: Util.dateToString(new Date()),
     };
   },
 
   onType: function(e) {
-    if ((e.keyCode || e.which) == 13) { // enter = send message
+    if (!e.shiftKey && (e.keyCode || e.which) == 13) { // enter = send message
       this.sendMessage();
+      this.previewView.clear();
+      return false;
     }
     // preview text for anything typed in (enter ought to clear it).
 
