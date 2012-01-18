@@ -45,10 +45,18 @@ var TeXchat = {
 
       // set cookie with new name.
       $.cookie("username", username, this.cookieOpts);
+      $.cookie("rusername", "", this.cookieOpts);
     }
-    return $.cookie("username") || Util.randomName();
-  }
 
+    // user chosen, or randomly assigned name
+    var username = $.cookie("username") || $.cookie("rusername");
+    if (!username) {
+      // if no history, randomly assign a new name.
+      $.cookie("rusername", Util.randomName(), this.cookieOpts);
+      username = $.cookie("rusername");
+    }
+    return username
+  },
 
 };
 
