@@ -39,6 +39,8 @@ var Utils = {
     // honor carriage returns.
     html = html.replace(/\n/g, '<br />');
 
+    html = html.replace(/\@[A-Za-z0-9-]+/g, "<span class='mention'>$&</span>");
+
     // process any links
     html = html.replace(this.link_re,
       "<a target='_blank' href='http://$2'>$&</a>");

@@ -73,3 +73,7 @@ body {
 .chat-message .name {
   font-weight: bold;
 }
+
+.mention {
+  font-weight: bold;
+}
