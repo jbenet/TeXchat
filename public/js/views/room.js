@@ -46,7 +46,9 @@ var RoomView = Backbone.View.extend({
     // append message to chat for now.
     if (msg.text) {
       this.chatView.appendMessage(msg);
-      Util.scrollToBottom(this.chatView.el, {animate: true});
+
+      if (TeXchat.settings('canScroll'))
+        Util.scrollToBottom(this.chatView.el, {animate: true});
       TeXchat.view.resize();
     }
 

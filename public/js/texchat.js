@@ -58,6 +58,17 @@ var TeXchat = {
     return username
   },
 
+  // settings defaults
+  _settings: {
+    'canScroll': true
+  },
+  settings: function (key, value) {
+    if (value !== undefined) {
+      this._settings[key] = !!value;
+    }
+    return this._settings[key];
+  },
+
 };
 
 window.TeXchat = TeXchat;
