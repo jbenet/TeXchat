@@ -19,9 +19,7 @@ var Router = Backbone.Router.extend({
 
   room: function(roomname) {
 
-    TeXchat.view.roomView = new RoomView({
-      model: new RoomModel({name: roomname || "home"})
-    });
+    TeXchat.view.roomView.model = new RoomModel({name: roomname || "home"});
 
     TeXchat.view.render();
 
