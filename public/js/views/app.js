@@ -61,7 +61,7 @@ var AppView = Backbone.View.extend({
 
   resize: function() {
     // set the chat height proportionally.
-    var height = document.height - 450;
+    var height = document.height - 460;
     $(this.el).find('#chat').css('height', height + 'px');
   }
 
