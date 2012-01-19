@@ -6,7 +6,8 @@ define([
   'util/util',
 
   'views/chat',
-  ], function($, _, Backbone, TeXchat, Util, ChatView) {
+  'components/cmdinput'
+  ], function($, _, Backbone, TeXchat, Util, ChatView, CmdInput) {
 
 // View
 
@@ -20,8 +21,11 @@ var RoomView = Backbone.View.extend({
   },
 
   initialize: function() {
+    _.bindAll(this, 'sendMessage', 'onType');
+
     this.chatView = new ChatView({el: '#chat'});
     this.previewView = new ChatView({el: '#send-preview'});
+    this.cmdInputView = new CmdInput.View({el: '#send-text'});
     // this.userlistView = new UserlistView({model: this.model});
   },
 
@@ -66,13 +70,16 @@ var RoomView = Backbone.View.extend({
   },
 
   onType: function(e) {
-    if (!e.shiftKey && (e.keyCode || e.which) == 13) { // enter = send message
+    var sendText = this.elSendBox().val();
+
+    // enter (without shift)
+    if (((e.keyCode || e.which) == 13) && !e.altKey) {
       this.sendMessage();
       this.previewView.clear();
       return false;
     }
-    // preview text for anything typed in (enter ought to clear it).
 
+    // preview text for anything typed in (enter ought to clear it).
     this.previewView.clear();
     var msg = this.message();
     if (msg.text) {
