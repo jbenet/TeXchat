@@ -16,10 +16,10 @@ var RoomModel = Backbone.Model.extend({
     console.log(this.get('name'));
     var names = _.range(20)
                  .map(Util.randomName)
-                 .map(function (n) { return {id: n.toLowerCase(), name: n}});
+                 .map(function (n) { return {id: n}});
     this.users = new Backbone.Collection(names, {
       comparator: function(user) {
-        return user.get("name");
+        return user.get('id').toLowerCase();
       }
     });
   },

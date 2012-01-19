@@ -97,7 +97,7 @@ var RoomView = Backbone.View.extend({
   },
 
   mentionUser: function(user) {
-    var mention = '@' + user.get('name') + ' ';
+    var mention = '@' + user.get('id') + ' ';
     this.elSendBox().val( this.elSendBox().val() + mention);
   }
 

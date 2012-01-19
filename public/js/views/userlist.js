@@ -37,11 +37,11 @@ var UserlistView = Backbone.View.extend({
     var markedSelf = false;
     this.collection.each(function (user) {
       var elUser = $(that.userTemplate({
-        name: user.get('name'),
+        name: user.get('id'),
         prefix: '>'
       }));
 
-      if (!markedSelf && user.get('name') == TeXchat.username()) {
+      if (!markedSelf && user.get('id') == TeXchat.username()) {
         elUser.find('.prefix').addClass('self')
         markedSelf = true;
       }
@@ -52,7 +52,7 @@ var UserlistView = Backbone.View.extend({
   },
 
   onClickUser: function(e) {
-    var userid = $(e.target).text().toLowerCase();
+    var userid = $(e.target).text();
     var user = this.collection.get(userid);
     if (this.options.onClickUser)
       this.options.onClickUser(user);
