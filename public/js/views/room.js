@@ -32,6 +32,8 @@ var RoomView = Backbone.View.extend({
       onClickUser: this.mentionUser,
       collection: this.model ? this.model.users : new Backbone.Collection()
     });
+
+    this.model.bind('receivedMessage', this.recvMessage, this);
   },
 
   render: function() {
@@ -49,8 +51,7 @@ var RoomView = Backbone.View.extend({
     // }
   },
 
-  sendMessage: function() {
-    var msg = this.message();
+  recvMessage: function(msg) {
 
     // append message to chat for now.
     if (msg.text) {
@@ -60,6 +61,13 @@ var RoomView = Backbone.View.extend({
         Util.scrollToBottom(this.chatView.el, {animate: true});
       TeXchat.view.resize();
     }
+
+  },
+
+  sendMessage: function() {
+    var msg = this.message();
+
+    this.recvMessage(msg);
 
     // clear send box.
     this.elSendBox().val('');
@@ -97,6 +105,9 @@ var RoomView = Backbone.View.extend({
   },
 
   mentionUser: function(user) {
+    if (!user)
+      return;
+
     var mention = '@' + user.get('id') + ' ';
     this.elSendBox().val( this.elSendBox().val() + mention);
   }

@@ -18,14 +18,24 @@ require([
 
   'util/router',
 
+  'models/room',
   'views/app',
-  ], function($, _, Backbone, TeXchat, Router, AppView) {
+
+  'protocols/texchat'
+  ], function($, _, Backbone, TeXchat, Router,
+    RoomModel, AppView, TeXchatProtocol) {
 
   TeXchat.initialize({ // config
+    socketurl: window.location.origin
   });
 
-  TeXchat.view = new AppView;
+  TeXchat.room = new RoomModel({name: ''});
+  TeXchat.view = new AppView();
   TeXchat.router = new Router();
+
+  TeXchat.protocol = new TeXchatProtocol(TeXchat.config.socketurl, {
+    room: TeXchat.room
+  });
 
   if (!Backbone.history.start({pushState: true})) {
     // TeXchat.router.navigate(window.location.pathname.substr(1));

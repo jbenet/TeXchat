@@ -26,6 +26,9 @@ var UserlistView = Backbone.View.extend({
 
   initialize: function() {
     _.bindAll(this, 'onClickUser');
+    this.collection.bind('add', this.render, this);
+    this.collection.bind('remove', this.render, this);
+    this.collection.bind('reset', this.render, this);
   },
 
   render: function() {

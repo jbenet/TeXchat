@@ -69,6 +69,7 @@ var TeXchat = {
     return this._settings[key];
   },
 
+  Util: Util,
 };
 
 window.TeXchat = TeXchat;

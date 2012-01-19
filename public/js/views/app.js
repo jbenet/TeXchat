@@ -25,9 +25,7 @@ var AppView = Backbone.View.extend({
 
   initialize: function() {
 
-    this.roomView = new RoomView({
-      model: new RoomModel({name: ""})
-    });
+    this.roomView = new RoomView({ model: TeXchat.room });
 
   },
 
