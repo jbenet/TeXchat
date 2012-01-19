@@ -6,8 +6,9 @@ define([
   'util/util',
 
   'views/chat',
-  'components/cmdinput'
-  ], function($, _, Backbone, TeXchat, Util, ChatView, CmdInput) {
+  'views/userlist',
+  'components/cmdinput',
+  ], function($, _, Backbone, TeXchat, Util, ChatView, UserlistView, CmdInput) {
 
 // View
 
@@ -21,12 +22,16 @@ var RoomView = Backbone.View.extend({
   },
 
   initialize: function() {
-    _.bindAll(this, 'sendMessage', 'onType');
+    _.bindAll(this, 'sendMessage', 'onType', 'mentionUser');
 
     this.chatView = new ChatView({el: '#chat'});
     this.previewView = new ChatView({el: '#send-preview'});
     this.cmdInputView = new CmdInput.View({el: '#send-text'});
-    // this.userlistView = new UserlistView({model: this.model});
+    this.userlistView = new UserlistView({
+      el: '#users',
+      onClickUser: this.mentionUser,
+      collection: this.model ? this.model.users : new Backbone.Collection()
+    });
   },
 
   render: function() {
@@ -36,7 +41,7 @@ var RoomView = Backbone.View.extend({
 
     this.chatView.render();
     this.previewView.render();
-    // this.userlistView.render();
+    this.userlistView.render();
 
     for (var i = 0; i < 100; i++) {
       this.elSendBox().val('herp ' + i + ' + ' + i + ' = ' + (i+i));
@@ -90,6 +95,11 @@ var RoomView = Backbone.View.extend({
   elSendBox: function() {
     return $(this.el).find('#send-text');
   },
+
+  mentionUser: function(user) {
+    var mention = '@' + user.get('name') + ' ';
+    this.elSendBox().val( this.elSendBox().val() + mention);
+  }
 
 });
 
