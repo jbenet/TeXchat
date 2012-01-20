@@ -33,6 +33,8 @@ require([
   TeXchat.publicRooms = new RoomModel.collection();
 
   TeXchat.view = new AppView();
+  TeXchat.view.render();
+
   TeXchat.router = new Router();
 
   TeXchat.protocol = new TeXchatProtocol(TeXchat.config.socketurl, {

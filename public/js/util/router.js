@@ -23,7 +23,7 @@ var Router = Backbone.Router.extend({
     TeXchat.view.roomView.model.clear();
     TeXchat.protocol.joinRoom(roomname);
 
-    TeXchat.view.render();
+    TeXchat.view.roomView.render();
 
   }
 
