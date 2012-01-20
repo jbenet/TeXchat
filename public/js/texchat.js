@@ -69,12 +69,17 @@ var TeXchat = {
     return this._settings[key];
   },
 
+  sysmsg: function(msg) {
+    this.view.roomView.recvMessage({
+      name: '',
+      date: Util.dateToString(new Date()),
+      text: msg
+    })
+  },
+
   Util: Util,
 };
 
 window.TeXchat = TeXchat;
 return TeXchat;
 });
-
-
-// var socket = io.connect('http://localhost:8080');

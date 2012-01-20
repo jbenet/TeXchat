@@ -10,39 +10,52 @@ var TeXchatProtocol = Protocol.extend({
 
 
   events: {
+    'chatMessage':  'onReceivedMessage',
     'joinedRoom': 'onJoinedRoom',
     'userJoined': 'onUserJoined',
     'userParted': 'onUserParted',
     'roomInfo':   'onRoomInfo',
-    'onRecvMsg':  'onReceivedMessage',
+    'rename': 'onRename',
+    'resync': 'onResync',
   },
 
   initialize: function() {
+    _.bindAll(this, 'setName', 'joinRoom', 'roomInfo', 'partRoom');
+    _.bindAll(this, 'sendMessage');
+
     this.room = this.options.room;
   }, // empty initialize function
 
+  setName: function() {
+    this.send('setName', TeXchat.username());
+  },
 
   joinRoom: function(room) {
 
-    if (this.room.get('name'))
+    if (this.room.get('name') == room)
       return; // already here
-
-    this.partRoom();
 
     this.room.set({
       'name': room
     });
     this.send('joinRoom', room);
+    this.send('roomInfo', room);
+  },
+
+  // request room information update.
+  roomInfo: function(room) {
+    room || (room = this.room.get('name'));
+    this.send('roomInfo', room);
   },
 
   partRoom: function(room) {
     if (!room)
       room = this.room.get('name');
 
-    this.assertInRoom(room);
-
     this.room.clear();
-    this.send('partRoom', room);
+
+    if (room)
+      this.send('partRoom', room);
   },
 
   sendMessage: function(room, message) {
@@ -53,7 +66,7 @@ var TeXchatProtocol = Protocol.extend({
 
     this.assertInRoom(room);
 
-    this.send('sendMessage', room, message);
+    this.send('chatMessage', room, message);
   },
 
 
@@ -88,6 +101,8 @@ var TeXchatProtocol = Protocol.extend({
     this.assertInRoom(room);
 
     this.room.users.add({ id: user });
+
+    TeXchat.sysmsg(user + ' joined room ' + room);
   },
 
   onUserParted: function(room, user) {
@@ -95,6 +110,7 @@ var TeXchatProtocol = Protocol.extend({
     this.assertInRoom(room);
 
     this.room.users.remove(user);
+    TeXchat.sysmsg(user + ' parted room ' + room);
   },
 
   onReceivedMessage: function(room, message) {
@@ -103,6 +119,16 @@ var TeXchatProtocol = Protocol.extend({
 
     this.room.trigger('receivedMessage', message);
   },
+
+  onResync: function() {
+    TeXchat.go('room/' + room);
+  },
+
+  onRename: function(room, oldname, newname) {
+    this.room.users.remove({ id: oldname });
+    this.room.users.add({ id: newname });
+    TeXchat.sysmsg(oldname + ' is now known as ' + newname);
+  }
 
 });
 

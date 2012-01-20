@@ -67,7 +67,8 @@ var RoomView = Backbone.View.extend({
   sendMessage: function() {
     var msg = this.message();
 
-    this.recvMessage(msg);
+    if (msg.text)
+      TeXchat.protocol.sendMessage(msg);
 
     // clear send box.
     this.elSendBox().val('');

@@ -18,10 +18,10 @@ var Router = Backbone.Router.extend({
   },
 
   room: function(roomname) {
+    roomname = roomname || "home";
 
-    // TeXchat.view.roomView.remove();
     TeXchat.view.roomView.model.clear();
-    TeXchat.view.roomView.model.set({name: roomname || "home"});
+    TeXchat.protocol.joinRoom(roomname);
 
     TeXchat.view.render();
 

@@ -36,6 +36,7 @@ var AppView = Backbone.View.extend({
     this.roomView.render();
 
     $(window).bind('resize', _.bind(this.resize, this));
+    $(window).bind('focus', _.bind(this.focus, this));
     this.resize();
   },
 
@@ -57,13 +58,26 @@ var AppView = Backbone.View.extend({
     var username = $(this.el).find('input#user').val();
     username = TeXchat.username(username);
     $(this.el).find('input#user').val(username);
+
+    TeXchat.protocol.setName();
   },
 
   resize: function() {
     // set the chat height proportionally.
     var height = document.height - 460;
     $(this.el).find('#chat').css('height', height + 'px');
-  }
+  },
+
+  focus: function() {
+
+    // refresh name. may have changed in another window.
+    var username = TeXchat.username();
+    if (username != $(this.el).find('input#user').val()) {
+      $(this.el).find('input#user').val(username);
+      TeXchat.protocol.setName();
+    }
+    Util.rateLimit(TeXchat.protocol.roomInfo, 500);
+  },
 
 });
 
