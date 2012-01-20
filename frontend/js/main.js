@@ -26,7 +26,7 @@ require([
     RoomModel, AppView, TeXchatProtocol) {
 
   TeXchat.initialize({ // config
-    socketurl: window.location.origin + '/chat'
+    socketurl: 'http://' + window.location.hostname + ':8080/chat'
   });
 
   TeXchat.room = new RoomModel({name: ''});
