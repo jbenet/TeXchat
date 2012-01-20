@@ -90,6 +90,9 @@ var RoomView = Backbone.View.extend({
     if (((e.keyCode || e.which) == 13) && !e.altKey) {
       this.sendMessage();
       this.previewView.clear();
+
+      $(this.el).find('#send-help').text(Util.randomHelpText());
+
       return false;
     }
 

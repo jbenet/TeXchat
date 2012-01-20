@@ -3,7 +3,7 @@ define([
   'backbone',
   ], function(_, Backbone) {
 
-var Utils = {
+var Util = {
 
   dateToString: function(date) {
     return date.toISOString().replace('T', ' ').split('.')[0];
@@ -13,9 +13,23 @@ var Utils = {
 
     var names = ['Isaac', 'Albert', 'Neils', 'Charles', 'Louis', 'Sigmund', 'Galileo', 'Antoine Laurent', 'Johannes', 'Nicolaus', 'Michael', 'James Clerk', 'Claude', 'Franz', 'Werner', 'Linus', 'Rudolf', 'Erwin', 'Ernest', 'Paul', 'Andreas', 'Tycho', 'Ludwig', 'Max', 'Marie', 'William', 'Charles', 'Pierre Simon', 'Edwin', 'Joseph', 'Max', 'Francis', 'Enrico', 'Leonard', 'Justus', 'Arthur', 'William', 'Marcello', 'Christiaan', 'Carl', 'Albrecht', 'August', 'Robert', 'Murray', 'Emil', 'Dmitri', 'Sheldon', 'James', 'John', 'John von', 'Richard', 'Alfred', 'Stephen', 'Anton', 'Max', 'Gustav', 'Hans', 'Gregor', 'Heike', 'Thomas', 'Hermann', 'Paul', 'Ernst', 'Charles', 'Theodosius', 'Max', 'Jean Baptiste', 'William', 'Noam', 'Frederick', 'John', 'Louis Victor', 'Carl', 'Jean', 'George', 'Claude', 'Lynn', 'Karl', 'Konrad', 'Edward', 'Frederick', 'Gertrude', 'Hans', 'J. Robert', 'Edward', 'Willard', 'Ernst', 'Jonas', 'Emil', 'Trofim', 'Francis', 'Alfred', 'Alexander', 'Wilhelm'];
 
-    return _.shuffle(names)[0];
-
+    return names[ Util.randomInt(3) % names.length ];
   },
+
+
+  randomHelpText: function() {
+    var text = [
+      'Hold the alt key to bypass keyboard shortcuts (enter, up, down).',
+      'Press up or down to move through previous commands.',
+      'Enter math between $ signs. Like so: $ 1 + 1 $.',
+      'Enter math using any valid MathJax syntax.',
+      'Press Alt + Enter to insert a line break.',
+      'Public rooms are listed. Private rooms can only be accessed by link.',
+      'Click a username to insert an @mention.',
+    ];
+    return text[ Util.randomInt(3) % text.length ];
+  },
+
 
   randomInt: function(order) {
     return Math.round(Math.random() * Math.pow(10, order || 5));
@@ -89,6 +103,6 @@ var Utils = {
 
 };
 
-return Utils;
+return Util;
 
 });
