@@ -114,3 +114,33 @@ ul.nav li.dropdown:hover ul.dropdown-menu{
 div.modal #roomlist tbody tr {
   cursor: pointer;
 }
+
+
+.github-ribbon {
+  z-index: 10000;
+  background-color: #0064CD;
+  overflow: hidden;
+  /* top left corner */
+  position: absolute;
+  right: -3em;
+  bottom: 2.5em;
+  /* 45 deg ccw rotation */
+  -moz-transform: rotate(-135deg);
+  -webkit-transform: rotate(-45deg);
+  /* shadow */
+  -moz-box-shadow: 0 0 1em #888;
+  -webkit-box-shadow: 0 0 1em #888;
+  font-size: 16px;
+}
+.github-ribbon a {
+  border: 1px solid #aaf;
+  color: #fff;
+  display: block;
+  font: bold 81.25% 'Helvetiva Neue', Helvetica, Arial, sans-serif;
+  margin: 0.05em 0 0.075em 0;
+  padding: 0.5em 3.5em;
+  text-align: center;
+  text-decoration: none;
+  /* shadow */
+  text-shadow: 0 0 0.5em #444;
+}
