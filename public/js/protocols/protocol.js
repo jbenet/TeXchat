@@ -59,11 +59,15 @@ _.extend(Protocol.prototype, Backbone.Events, {
         throw new Error('Event "' + events[event] + '" does not exist');
       method = _.bind(method, this);
 
+      var ev = event + '';
       var that = this;
-      this.socket.on(event, function() {
-        method.apply(that, arguments);
-        that.trigger(event);
-      });
+
+      console.log('binding ' + event + ' to ' + events[event]);
+      this.socket.on(event, method);
+      // this.socket.on(event, function() {
+      //   method.apply(that, arguments);
+      //   that.trigger(ev);
+      // });
     }
   },
 
