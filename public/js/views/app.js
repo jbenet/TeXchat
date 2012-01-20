@@ -77,6 +77,9 @@ var AppView = Backbone.View.extend({
 
   changeNameOnBlur: function() {
     var username = $(this.el).find('input#user').val();
+    if (username == TeXchat.username())
+      return; // no name change;
+
     username = TeXchat.username(username);
     $(this.el).find('input#user').val(username);
 
