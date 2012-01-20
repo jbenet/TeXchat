@@ -13,12 +13,16 @@ var RoomlistView = Backbone.View.extend({
 
   template: _.template('\
   <div class="modal-body">\
-    <table id="roomlist" class="zebra-striped" style="overflow: auto;">\
+    <table id="roomlist" class="zebra-striped">\
       <thead><tr><th>Public Room Name</th><th>Users</th></tr></thead>\
-      <tbody>\
-        <tr><td>Loading...</td><td></td></tr>\
-      </tbody>\
     </table>\
+    <div style="overflow: auto; height: 500px;">\
+      <table>\
+        <tbody>\
+          <tr><td>Loading...</td><td></td></tr>\
+        </tbody>\
+      </table>\
+    </div>\
   </div>\
   '),
 
