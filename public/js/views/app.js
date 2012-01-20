@@ -8,6 +8,8 @@ define([
   'models/room',
   'views/room',
 
+  'libs/bootstrap/bootstrap-twipsy',
+  'libs/bootstrap/bootstrap-popover',
   ], function($, _, Backbone, TeXchat, Util, RoomModel, RoomView) {
 
 // View
@@ -32,6 +34,24 @@ var AppView = Backbone.View.extend({
   render: function() {
 
     $(this.el).find('input#user').val(TeXchat.username());
+    $(this.el).find('input#user').popover({
+      title: function() { return 'Enter New Username.'; },
+      content: function() { return 'Enter the username you wish to use and '
+        + 'press enter. It will be saved for future sessions. '
+        + 'Clear the field and press enter to select a random name!'; },
+      placement: 'below',
+      trigger: 'focus'
+    });
+
+    $(this.el).find('#join').popover({
+      title: function() { return 'Enter Room Name.'; },
+      content: function() { return 'Enter the room name and press enter.'
+        + ' Public rooms can be created just by joining them.'; },
+      placement: 'below',
+      trigger: 'focus'
+    });
+
+
 
     this.roomView.render();
 
@@ -43,8 +63,9 @@ var AppView = Backbone.View.extend({
   gotoOnEnter: function(e) {
     if ((e.keyCode || e.which) == 13) { // enter
 
-      var room = Util.escape($('#join').val());
+      var room = Util.escape($(this.el).find('#join').val());
       TeXchat.router.navigate('room/' + room, true);
+      $(this.el).find('#join').blur();
     }
   },
 
