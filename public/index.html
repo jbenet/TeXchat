@@ -27,7 +27,7 @@
           <a class="brand" href="#">TeXchat</a>
 
           <ul class="nav">
-            <li><a>About</a></li>
+            <li><a id="about">About</a></li>
 
             <li class="dropdown">
               <a class="dropdown-toggle">Rooms</a>
@@ -106,6 +106,87 @@
       </footer>
 
     </div> <!-- /container -->
+
+    <div id="about-modal" class="modal hide fade">
+      <div class="modal-header">
+        <a href="#" class="close">&times;</a>
+        <h3>About TeXchat</h3>
+      </div>
+      <div class="modal-body">
+        <p>TeXchat is a simple web chat service that renders
+          <a href="http://en.wikipedia.org/wiki/TeX" target="_blank">TeX</a>
+          math.
+
+        <p>The goal is to make it trivially easy to have a conversation with
+someone else in the web, using mathematical symbols.
+"0_j := 0_j - a^3 J(0) d0 - sum(phi_i)" just doesn't cut it, so instead, use
+\( \theta_j := \theta_j - \alpha^3 J (\theta) \partial \theta - \sum \phi_i \)
+
+        <p>Currently, the prettiest math rendering is TeX math, which
+          <a href="http://www.mathjax.org/" target="_blank">MathJax</a>
+          has ellegantly brought to the web. This is coupled with a simple
+          chat service on top of socket.io.
+
+        <p>If you have any suggestions, feedback, issues, etc:
+           please start a topic in the <a
+           href="http://github.com/jbenet/TeXchat/issues"
+           target="_blank">github issues</a>
+           page. Feel free to contact me directly, but github is preferable.
+
+        <p>&nbsp;
+
+        <div class="row">
+          <div class="span1">&nbsp;</div>
+          <div class="span2">
+            <h4>Powered by</h4>
+            <ul class="unstyled">
+              <li>Frontend:</li>
+              <ul>
+                <li><a href="http://www.mathjax.org/" target="_blank">MathJax</a></li>
+                <li><a href="http://twitter.github.com/bootstrap/" target="_blank">Bootstrap</a></li>
+                <li><a href="http://jquery.com/" target="_blank">jQuery</a></li>
+                <li><a href="http://documentcloud.github.com/underscore" target="_blank">Underscore.js</a></li>
+                <li><a href="http://documentcloud.github.com/backbone" target="_blank">Backbone.js</a></li>
+                <li><a href="http://socket.io" target="_blank">Socket.IO</a></li>
+              </ul>
+              <li>Backend:</li>
+              <ul>
+                <li><a href="http://nodejs.org/" target="_blank">node.js</a></li>
+                <li><a href="http://nginx.org/" target="_blank">nginx</a></li>
+              </ul>
+            </ul>
+          </div>
+          <div class="span3">&nbsp;</div>
+          <div class="span2">
+            <h4>Links</h4>
+            <ul class="unstyled">
+              <li>TeXchat:</li>
+              <ul>
+                <li><a href="http://github.com/jbenet/TeXchat" target="_blank">github</a></li>
+                <li><a href="http://github.com/jbenet/TeXchat/issues" target="_blank">issues</a></li>
+                <li><a href="http://github.com/jbenet/TeXchat/wiki" target="_blank">wiki</a></li>
+              </ul>
+              <li>author:</li>
+              <ul>
+                <li><a href="http://twitter.com/juanbenet" target="_blank">@juanbenet</a></li>
+                <li><a href="http://github.com/jbenet" target="_blank">github</a></li>
+
+                <li><a
+href="http://www.google.com/recaptcha/mailhide/d?k=01E-WL9VjjGLTnyBatWs8rjQ==&amp;c=1wBOm0qCzpe5ErWPJ5OvnFIeDERF4-xj2HE-dpfB6Zg="
+onclick="window.open('http://www.google.com/recaptcha/mailhide/d?k\07501E-WL9VjjGLTnyBatWs8rjQ\75\75\46c\0751wBOm0qCzpe5ErWPJ5OvnFIeDERF4-xj2HE-dpfB6Zg\075', '', 'toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=500,height=300'); return false;"
+title="Reveal this e-mail address" >
+                email</a></li>
+
+              </ul>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <a href="#" class="btn primary">Close</a>
+      </div>
+    </div>
 
   </body>
 

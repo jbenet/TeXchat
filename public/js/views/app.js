@@ -26,6 +26,7 @@ var AppView = Backbone.View.extend({
     'keyup #join':      'gotoOnEnter',
     'resize':           'resize',
 
+    'click a#about': 'onClickAbout',
     'click a#new-private-room': 'newPrivateRoom',
     'click a#new-public-room': 'newPublicRoom',
     'click a#list-public-rooms': 'listPublicRooms',
@@ -62,6 +63,11 @@ var AppView = Backbone.View.extend({
     });
 
 
+    // setup about modal
+    $(this.el).find('#about-modal').modal({
+      keyboard: true,
+      backdrop: true
+    });
 
     // render room subview.
     this.roomView.render();
@@ -113,6 +119,11 @@ var AppView = Backbone.View.extend({
       TeXchat.protocol.setName();
     }
     Util.rateLimit(TeXchat.protocol.roomInfo, 500);
+  },
+
+
+  onClickAbout: function() {
+    $(this.el).find('#about-modal').modal('show');
   },
 
 
