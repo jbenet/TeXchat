@@ -30,6 +30,8 @@ require([
   });
 
   TeXchat.room = new RoomModel({name: ''});
+  TeXchat.publicRooms = new RoomModel.collection();
+
   TeXchat.view = new AppView();
   TeXchat.router = new Router();
 

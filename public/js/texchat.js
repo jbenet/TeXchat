@@ -28,6 +28,7 @@ var TeXchat = {
   },
 
 
+
   go: function(fragment) {
     this.router.navigate(fragment, true);
   },
@@ -36,6 +37,7 @@ var TeXchat = {
     if (roomname)
       this.go('room/' + roomname);
   },
+
 
   cookieOpts: {
     path: '/',
@@ -62,6 +64,7 @@ var TeXchat = {
     }
     return username
   },
+
 
   // settings defaults
   _settings: {

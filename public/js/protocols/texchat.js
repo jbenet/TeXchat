@@ -11,6 +11,7 @@ var TeXchatProtocol = Protocol.extend({
 
   events: {
     'chatMessage':  'onReceivedMessage',
+    'publicRooms': 'onPublicRooms',
     'joinedRoom': 'onJoinedRoom',
     'userJoined': 'onUserJoined',
     'userParted': 'onUserParted',
@@ -21,7 +22,7 @@ var TeXchatProtocol = Protocol.extend({
 
   initialize: function() {
     _.bindAll(this, 'setName', 'joinRoom', 'roomInfo', 'partRoom');
-    _.bindAll(this, 'sendMessage');
+    _.bindAll(this, 'sendMessage', 'onPublicRooms');
 
     this.room = this.options.room;
   }, // empty initialize function
@@ -46,6 +47,11 @@ var TeXchatProtocol = Protocol.extend({
   roomInfo: function(room) {
     room || (room = this.room.get('name'));
     this.send('roomInfo', room);
+  },
+
+  // request public rooms information
+  getPublicRooms: function(room) {
+    this.send('getPublicRooms');
   },
 
   partRoom: function(room) {
@@ -128,6 +134,12 @@ var TeXchatProtocol = Protocol.extend({
     this.room.users.remove({ id: oldname });
     this.room.users.add({ id: newname });
     TeXchat.sysmsg(oldname + ' is now known as ' + newname);
+  },
+
+  onPublicRooms: function(rooms) {
+
+    TeXchat.publicRooms.reset(rooms);
+
   }
 
 });

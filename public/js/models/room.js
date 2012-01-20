@@ -10,13 +10,11 @@ define([
 var RoomModel = Backbone.Model.extend({
 
   initialize: function() {
-    // this.chatView = new ChatView({model: this.model});
-    // this.userlistView = new UserlistView({model: this.model});
 
-    console.log(this.get('name'));
-    var names = _.range(20)
-                 .map(Util.randomName)
-                 .map(function (n) { return {id: n}});
+    // var names = _.range(20)
+    //              .map(Util.randomName)
+    //              .map(function (n) { return {id: n}});
+
     this.users = new Backbone.Collection([], {
       comparator: function(user) {
         return user.get('id').toLowerCase();
@@ -24,6 +22,13 @@ var RoomModel = Backbone.Model.extend({
     });
   },
 
+});
+
+RoomModel.collection = Backbone.Collection.extend({
+  model: RoomModel,
+  comparator: function(room) {
+    return room.get('name').toLowerCase();
+  },
 });
 
 return RoomModel;

@@ -62,6 +62,11 @@ body {
   color: rgba(255, 255, 255, 0.8);
 }
 
+/* display the dropdown on hover */
+ul.nav li.dropdown:hover ul.dropdown-menu{
+  display: block;
+}
+
 /* texchat-specific */
 
 .chat-message,
@@ -104,4 +109,8 @@ body {
 #users li span.prefix.self,
 #users li:hover span.prefix {
   color: rgba(0, 0, 0, 0.3);
+}
+
+div.modal #roomlist tbody tr {
+  cursor: pointer;
 }

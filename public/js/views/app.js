@@ -7,10 +7,12 @@ define([
 
   'models/room',
   'views/room',
+  'views/roomlist',
 
   'libs/bootstrap/bootstrap-twipsy',
   'libs/bootstrap/bootstrap-popover',
-  ], function($, _, Backbone, TeXchat, Util, RoomModel, RoomView) {
+  ], function($, _, Backbone, TeXchat, Util,
+      RoomModel, RoomView, RoomlistView) {
 
 // View
 
@@ -23,6 +25,10 @@ var AppView = Backbone.View.extend({
     'blur input#user':  'changeNameOnBlur',
     'keyup #join':      'gotoOnEnter',
     'resize':           'resize',
+
+    'click a#new-private-room': 'newPrivateRoom',
+    'click a#new-public-room': 'newPublicRoom',
+    'click a#list-public-rooms': 'listPublicRooms',
   },
 
   initialize: function() {
@@ -102,6 +108,28 @@ var AppView = Backbone.View.extend({
     }
     Util.rateLimit(TeXchat.protocol.roomInfo, 500);
   },
+
+
+  newPrivateRoom: function() {
+    TeXchat.goToRoom(Util.randomPrivateRoom());
+  },
+
+  newPublicRoom: function() {
+    $(this.el).find('#join').focus();
+    $(this.el).find('.dropdown-menu').blur();
+
+  },
+
+  listPublicRooms: function(e) {
+
+    var rlv = new RoomlistView({collection: TeXchat.publicRooms});
+    rlv.render();
+    $(this.el).append($(rlv.el));
+    rlv.show();
+
+    TeXchat.protocol.getPublicRooms();
+
+  }
 
 });
 

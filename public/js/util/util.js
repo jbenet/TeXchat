@@ -1,6 +1,7 @@
 define([
   'underscore',
   'backbone',
+  'libs/jquery/jquery.sha1',
   ], function(_, Backbone) {
 
 var Util = {
@@ -99,6 +100,15 @@ var Util = {
 
     callback();
     this._rateLimitData[callback] = new Date();
+  },
+
+
+  randomPrivateRoom: function() {
+    return $.sha1((new Date()).toISOString() + 'TeXchat' + Util.randomInt(4));
+  },
+
+  isPrivateRoom: function(roomname) {
+    return roomname.length == Util.randomPrivateRoom().length;
   }
 
 };

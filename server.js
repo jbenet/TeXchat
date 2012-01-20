@@ -64,6 +64,25 @@ chat.on('connection', function (socket) {
 
   });
 
+
+  socket.on('getPublicRooms', function() {
+
+    var cleanName = function(key) { return key.replace(/\/chat\/?/gi, ''); }
+
+    var rooms = _(chat.manager.rooms || {})
+                // room object with user count.
+                .map(function(v, k) { return {name: k, users: v.length }; })
+                // remove the /chat/ prefix.
+                .map(function(r) { r.name = cleanName(r.name); return r; })
+                // filter out empty string
+                .filter(function(r) { return r.name.length > 0; })
+                // filter out private rooms (sha1 hashes)
+                .filter(function(r) { return r.name.length != 40; })
+
+    socket.emit('publicRooms', rooms);
+
+  });
+
   function leaveRoom() {
     // leave previous room
     if (user.room) {

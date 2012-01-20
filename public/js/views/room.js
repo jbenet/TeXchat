@@ -39,7 +39,11 @@ var RoomView = Backbone.View.extend({
   render: function() {
 
     // set name
-    $(this.el).find('#name').text(this.model.get('name'));
+    var roomname = this.model.get('name');
+    $(this.el).find('#name').text(roomname);
+    $(this.el).find('#status').text(
+      Util.isPrivateRoom(roomname) ? 'private' : 'public'
+    )
 
     this.chatView.render();
     this.previewView.render();
