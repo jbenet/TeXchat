@@ -31,7 +31,9 @@ var Utils = {
   },
 
 
-  link_re: /(http:\/\/)([^ <>]*)/g,
+  // link_re: /(http:\/\/)([^ <>]*)/g,
+  link_re: /\b((?:https?:\/\/|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}\/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'".,<>?«»“”‘’]))/i,
+
   rendered: function(selector) {
 
     var html = $(selector).html().trim();
@@ -43,7 +45,7 @@ var Utils = {
 
     // process any links
     html = html.replace(this.link_re,
-      "<a target='_blank' href='http://$2'>$&</a>");
+      "<a target='_blank' href='http://$1'>$&</a>");
 
     $(selector).html(html);
 
