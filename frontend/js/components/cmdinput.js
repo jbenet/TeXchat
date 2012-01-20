@@ -100,11 +100,12 @@ CmdInput.View = Backbone.View.extend({
   tagName: 'input',
 
   events: {
-    'keyup':  'onType',
+    'keyup':  'onKeyUp',
+    'keypress': 'onKeyPress',
   },
 
   initialize: function() {
-    _.bindAll(this, 'onType');
+    _.bindAll(this, 'onKeyPress', 'onKeyUp');
     this.cmds = new CmdInput.Commands();
   },
 
@@ -115,13 +116,13 @@ CmdInput.View = Backbone.View.extend({
     return event.altKey;
   },
 
-  _lastEvent: undefined,
+  _lastEventKU: undefined,
   _currentCmd: '',
-  onType: function(e) {
+  onKeyUp: function(e) {
     // bug: events firing twice!?
-    if (e == this._lastEvent)
+    if (e == this._lastEventKU)
       return;
-    this._lastEvent = e;
+    this._lastEventKU = e;
 
     if (this.ignoreKBEvent(e))
       return;
@@ -150,14 +151,23 @@ CmdInput.View = Backbone.View.extend({
 
       case 13: // enter
         var text = $(this.el).val().trim();
-        this.cmds.add({cmd: text});
+        if (text)
+          this.cmds.add({cmd: text});
     }
-
 
     // preview text for anything typed in (enter ought to clear it).
     // if (this.options.onType)
     //   this.options.onType(e);
   },
+
+
+  onKeyPress: function(e) {
+
+    if (!this.ignoreKBEvent(e) && (e.keyCode || e.which) == 13) // enter
+      return false;
+
+  },
+
 
 });
 
