@@ -19,11 +19,12 @@ TeXchat is built by [http://github.com/jbenet](Juan Batiz-Benet).
 
 ## Install
 
-    git clone https://github.com/jbenet/TeXchat/
+    git clone https://github.com/jbenet/TeXchat/ texchat
     cd TeXchat
     npm install
     node backend/server.js
-    go to http://localhost:8080/
+
+Then go to http://localhost:8080/ in your favorite web browser.
 
 
 ## License
