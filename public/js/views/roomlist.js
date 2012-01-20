@@ -61,7 +61,7 @@ var RoomlistView = Backbone.View.extend({
 
     // bind remove upon hiding.
     var that = this;
-    $(this.el).find('.modal').bind('hidden', function (e) {
+    $(this.el).bind('hidden', function (e) {
       // e.target.remove();
       that.collection.unbind('add', this.renderRooms);
       that.remove();
