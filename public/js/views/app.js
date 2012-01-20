@@ -39,7 +39,10 @@ var AppView = Backbone.View.extend({
 
   render: function() {
 
+    // fill the username field with selected username.
     $(this.el).find('input#user').val(TeXchat.username());
+
+    // popever explaining the username field
     $(this.el).find('input#user').popover({
       title: function() { return 'Enter New Username.'; },
       content: function() { return 'Enter the username you wish to use and '
@@ -49,6 +52,7 @@ var AppView = Backbone.View.extend({
       trigger: 'focus'
     });
 
+    // popever explaining the join room field
     $(this.el).find('#join').popover({
       title: function() { return 'Enter Room Name.'; },
       content: function() { return 'Enter the room name and press enter.'
@@ -59,11 +63,13 @@ var AppView = Backbone.View.extend({
 
 
 
+    // render room subview.
     this.roomView.render();
 
+    // bind events
     $(window).bind('resize', _.bind(this.resize, this));
     $(window).bind('focus', _.bind(this.focus, this));
-    this.resize();
+    this.resize(); // trigger resize event for first time.
   },
 
   gotoOnEnter: function(e) {
