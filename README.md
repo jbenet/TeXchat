@@ -20,7 +20,7 @@ TeXchat is built by [http://github.com/jbenet](Juan Batiz-Benet).
 ## Install
 
     git clone https://github.com/jbenet/TeXchat/ texchat
-    cd TeXchat
+    cd texchat
     npm install
     node backend/server.js
 
