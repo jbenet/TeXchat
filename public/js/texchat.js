@@ -32,6 +32,11 @@ var TeXchat = {
     this.router.navigate(fragment, true);
   },
 
+  goToRoom: function(roomname) {
+    if (roomname)
+      this.go('room/' + roomname);
+  },
+
   cookieOpts: {
     path: '/',
     expires: new Date("2112"),  // hopefully by 2112, js is no longer in use.

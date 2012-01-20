@@ -93,7 +93,7 @@ var TeXchatProtocol = Protocol.extend({
     console.log('joined room ' + room);
     // this.assertInRoom(room);
 
-    TeXchat.go('room/' + room);
+    TeXchat.goToRoom(room);
   },
 
   onUserJoined: function(room, user) {
@@ -121,7 +121,7 @@ var TeXchatProtocol = Protocol.extend({
   },
 
   onResync: function() {
-    TeXchat.go('room/' + room);
+    TeXchat.goToRoom(room);
   },
 
   onRename: function(room, oldname, newname) {
