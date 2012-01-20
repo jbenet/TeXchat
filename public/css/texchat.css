@@ -58,6 +58,10 @@ body {
   border: 0;
 }
 
+.topbar label {
+  color: rgba(255, 255, 255, 0.8);
+}
+
 /* texchat-specific */
 
 .chat-message,
