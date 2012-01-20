@@ -48,11 +48,17 @@ var RoomView = Backbone.View.extend({
     this.chatView.render();
     this.previewView.render();
     this.userlistView.render();
+    this.renderRandomMessage();
 
     // for (var i = 0; i < 100; i++) {
     //   this.elSendBox().val('herp ' + i + ' + ' + i + ' = ' + (i+i));
     //   this.sendMessage();
     // }
+
+  },
+
+  renderRandomMessage: function() {
+    $(this.el).find('#send-help').text(Util.randomHelpText());
   },
 
   recvMessage: function(msg) {
@@ -95,7 +101,7 @@ var RoomView = Backbone.View.extend({
       this.sendMessage();
       this.previewView.clear();
 
-      $(this.el).find('#send-help').text(Util.randomHelpText());
+      this.renderRandomMessage();
 
       return false;
     }
