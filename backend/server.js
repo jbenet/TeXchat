@@ -16,7 +16,7 @@ app.configure(function() {
 });
 
 app.configure(function() {
-  app.use(express.static(__dirname + '/frontend'));
+  app.use(express.static(__dirname + '/../frontend'));
   app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
 });
 
