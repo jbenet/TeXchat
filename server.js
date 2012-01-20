@@ -1,24 +1,11 @@
 var express = require('express');
 var socketio = require('socket.io');
-var klass = require('klass');
 var _ = require('underscore');
 
 var app = express.createServer();
 var io = socketio.listen(app);
 
 app.listen(8080);
-
-
-// require.js
-var requirejs = require('requirejs');
-
-requirejs.config({
-  //Pass the top-level main.js/index.js require
-  //function to requirejs so that node modules
-  //are loaded relative to the top-level JS file.
-  nodeRequire: require
-});
-
 
 
 // routing
