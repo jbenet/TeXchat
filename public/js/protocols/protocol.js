@@ -62,7 +62,7 @@ _.extend(Protocol.prototype, Backbone.Events, {
       var ev = event + '';
       var that = this;
 
-      console.log('binding ' + event + ' to ' + events[event]);
+      // console.log('binding ' + event + ' to ' + events[event]);
       this.socket.on(event, method);
       // this.socket.on(event, function() {
       //   method.apply(that, arguments);

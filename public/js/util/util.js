@@ -94,7 +94,7 @@ var Util = {
 
     var last = this._rateLimitData[callback];
     if (last && (new Date() - last < ms)) {
-      console.log('rate limited');
+      // console.log('rate limited');
       return;
     }
 

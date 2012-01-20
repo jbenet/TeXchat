@@ -83,7 +83,7 @@ var TeXchatProtocol = Protocol.extend({
 
 
   onRoomInfo: function(room, info) {
-    console.log('room ' + room + ' information ' + info);
+    // console.log('room ' + room + ' information ' + info);
     this.assertInRoom(room);
 
     this.room.set({name: info.name});
@@ -96,14 +96,14 @@ var TeXchatProtocol = Protocol.extend({
   },
 
   onJoinedRoom: function(room) {
-    console.log('joined room ' + room);
+    // console.log('joined room ' + room);
     // this.assertInRoom(room);
 
     TeXchat.goToRoom(room);
   },
 
   onUserJoined: function(room, user) {
-    console.log(user + ' joined room ' + room);
+    // console.log(user + ' joined room ' + room);
     this.assertInRoom(room);
 
     this.room.users.add({ id: user });
@@ -112,7 +112,7 @@ var TeXchatProtocol = Protocol.extend({
   },
 
   onUserParted: function(room, user) {
-    console.log(user + ' parted room ' + room);
+    // console.log(user + ' parted room ' + room);
     this.assertInRoom(room);
 
     this.room.users.remove(user);
@@ -120,7 +120,7 @@ var TeXchatProtocol = Protocol.extend({
   },
 
   onReceivedMessage: function(room, message) {
-    console.log('room ' + room + ' received ' + message);
+    // console.log('room ' + room + ' received ' + message);
     this.assertInRoom(room);
 
     this.room.trigger('receivedMessage', message);
