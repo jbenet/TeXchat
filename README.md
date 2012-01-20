@@ -24,7 +24,8 @@ TeXchat is built by [http://github.com/jbenet](Juan Batiz-Benet).
     npm install
     node backend/server.js
 
-Then go to http://localhost:8080/ in your favorite web browser.
+Then go to [http://localhost:8080/](http://localhost:8080/) in your favorite
+web browser.
 
 
 ## License
