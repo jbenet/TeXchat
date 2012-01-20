@@ -48,7 +48,7 @@ var RoomView = Backbone.View.extend({
     this.chatView.render();
     this.previewView.render();
     this.userlistView.render();
-    this.renderRandomMessage();
+    // this.renderRandomMessage();
 
     // for (var i = 0; i < 100; i++) {
     //   this.elSendBox().val('herp ' + i + ' + ' + i + ' = ' + (i+i));
