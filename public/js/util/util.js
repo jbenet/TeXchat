@@ -73,6 +73,20 @@ var Utils = {
     }
   },
 
+  _rateLimitData: {},
+  rateLimit: function(callback, ms) {
+    ms || (ms = 300);
+
+    var last = this._rateLimitData[callback];
+    if (last && (new Date() - last < ms)) {
+      console.log('rate limited');
+      return;
+    }
+
+    callback();
+    this._rateLimitData[callback] = new Date();
+  }
+
 };
 
 return Utils;
