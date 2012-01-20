@@ -62,6 +62,8 @@ var Util = {
     html = html.replace(this.link_re,
       "<a target='_blank' href='http://$1'>$&</a>");
 
+    html = html.replace('http://http://', 'http://'); // silly regex
+
     $(selector).html(html);
 
 
