@@ -2,7 +2,7 @@
 
 ## About
 
-TeXchat is a simple web chat service that renders TeX math.
+TeXchat is a simple web chat service that renders TeX math. Check it out at [http://texchat.juanbb.com](http://texchat.juanbb.com)!
 
 The goal is to make it trivially easy to have a conversation with
 someone else in the web, using mathematical symbols.
