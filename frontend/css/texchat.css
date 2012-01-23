@@ -93,6 +93,17 @@ ul.nav li.dropdown:hover ul.dropdown-menu{
   font-weight: bold;
 }
 
+.chat-message > span.text
+/*.chat-message:hover > span.math*/ {
+  display: none;
+}
+/*
+.chat-message > span.math,
+.chat-message:hover > span.text {
+  display: inline;
+}
+*/
+
 .mention {
   font-weight: bold;
 }
