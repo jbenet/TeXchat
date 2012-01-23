@@ -17,7 +17,7 @@
  * limitations under the License.
  * =========================================================== */
 
-
+define(['jquery', 'libs/bootstrap/bootstrap-twipsy'], function (jQuery) {
 !function( $ ) {
 
  "use strict"
@@ -88,3 +88,4 @@
   $.fn.twipsy.rejectAttrOptions.push( 'content' )
 
 }( window.jQuery || window.ender );
+}); // end define
