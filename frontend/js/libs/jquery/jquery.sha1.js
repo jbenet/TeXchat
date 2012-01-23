@@ -29,7 +29,7 @@
  * @param {jQuery} {sha1:function(string))
  * @return string
  */
-
+define(['jquery'], function (jQuery) {
 (function($){
 
         var rotateLeft = function(lValue, iShiftBits) {
@@ -167,3 +167,5 @@
                 }
         });
 })(jQuery);
+
+}); // end define
