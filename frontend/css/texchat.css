@@ -126,6 +126,11 @@ div.modal #roomlist tbody tr {
   cursor: pointer;
 }
 
+#socialmedia {
+  position: absolute;
+  bottom: 88px;
+}
+
 
 .github-ribbon {
   z-index: 10000;
