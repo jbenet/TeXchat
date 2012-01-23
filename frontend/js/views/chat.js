@@ -3,7 +3,10 @@ define([
   'underscore',
   'backbone',
   'texchat',
-  'util/util'
+  'util/util',
+
+  'libs/bootstrap/bootstrap-twipsy',
+  'libs/bootstrap/bootstrap-popover',
   ], function($, _, Backbone, TeXchat, Util) {
 
 // View
@@ -38,14 +41,25 @@ var ChatView = Backbone.View.extend({
       $(this.el).append(elMsg);
 
       // signal that we've rendered and added this elem (for mathjax, etc)
-      Util.rendered(elMsg);
+      Util.rendered(elMsg.children('span.math'));
+
+      // source popover
+      elMsg.popover({
+        title: function() { return 'Message Source'; },
+        content: function() { return message.text; },
+        placement: 'right',
+        trigger: 'hover',
+        stayOnHover: true,
+      });
+
     }
   },
 
   msgTemplate: _.template('<div class="chat-message">\
       <span class="date"><%- date %></span>\
       <span class="name"><%- name %>:</span>\
-      <span class="text"><%- text %></span>\
+      <span class="math"><%- text %></span>\
+      <span class="text tex2jax_ignore"><%- text %></span>\
     </div>\
   '),
   // html-escape all values
