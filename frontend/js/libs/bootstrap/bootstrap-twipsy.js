@@ -120,7 +120,7 @@ define(['jquery'], function (jQuery) {
   , setContent: function () {
       var $tip = this.tip()
       $tip.find('.twipsy-inner')[this.options.html ? 'html' : 'text'](this.getTitle())
-      $tip[0].className = 'twipsy'
+      $tip[0].className = 'twipsy ' + this.options.stayTargetClass
     }
 
   , hide: function() {
@@ -259,16 +259,29 @@ define(['jquery'], function (jQuery) {
     }
 
     function leave() {
-      var twipsy = get(this)
-      twipsy.hoverState = 'out'
-      if (options.delayOut == 0) {
-        twipsy.hide()
-      } else {
-        setTimeout(function() {
-          if (twipsy.hoverState == 'out') {
-            twipsy.hide()
-          }
-        }, options.delayOut)
+      var twipsy = get(this);
+      if (!options.stayOnHover) {
+        twipsy.hoverState = 'out'
+        if (options.delayOut == 0) {
+          twipsy.hide()
+        } else {
+          setTimeout(function() {
+            if (twipsy.hoverState == 'out') {
+              twipsy.hide()
+            }
+          }, options.delayOut)
+        }
+      }
+      else {
+        var timeoutid = setTimeout(function() {
+          twipsy.hide()
+        }, 100)
+        $('.'+options.stayTargetClass).hover(function(){
+          clearTimeout(timeoutid)
+        }, function(){
+          twipsy.hide()
+        })
+
       }
     }
 
@@ -294,6 +307,8 @@ define(['jquery'], function (jQuery) {
     animate: true
   , delayIn: 0
   , delayOut: 0
+  , stayOnHover: false
+  , stayTargetClass : 'bs-popover-'+Math.floor(Math.random()*100000)
   , fallback: ''
   , placement: 'above'
   , html: false
