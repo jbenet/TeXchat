@@ -15,11 +15,17 @@ app.configure(function() {
   app.use(app.router);
 });
 
-app.configure(function() {
-  app.use(express.static(__dirname + '/../frontend'));
-  app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
+app.configure('development', function() {
+    app.use(express.static(__dirname + '/../frontend'));
+    app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
 });
 
+app.configure('production', function() {
+  var oneYear = 31557600000;
+  var oneDay = 86400000;
+  app.use(express.static(__dirname + '/../frontend', { maxAge: oneDay }));
+  app.use(express.errorHandler());
+});
 
 app.get('/room/:room', function (req, res) {
   req.url = '/';
