@@ -45,13 +45,20 @@ var AppView = Backbone.View.extend({
 
     // popever explaining the username field
     $(this.el).find('input#user').popover({
-      title: function() { return 'Enter New Username.'; },
-      content: function() { return 'Enter the username you wish to use and '
-        + 'press enter. It will be saved for future sessions. '
+      title: function() { return 'Choose your name!'; },
+      content: function() { return 'Enter the username above that you wish to '
+        + 'use, then press enter. It will be saved for future sessions. '
         + 'Clear the field and press enter to select a random name!'; },
       placement: 'below',
       trigger: 'focus'
     });
+
+    if (!TeXchat.usernameIsUserChosen()) {
+      // show popover to prompt username change if randomly selected.
+      setTimeout(_.bind(function() {
+        $(this.el).find('input#user').popover('show');
+      }, this), 2000);
+    }
 
     // popever explaining the join room field
     $(this.el).find('#join').popover({

@@ -44,6 +44,10 @@ var TeXchat = {
     expires: new Date("2112"),  // hopefully by 2112, js is no longer in use.
   },
 
+  usernameIsUserChosen: function() {
+    return !!$.cookie("username");
+  },
+
   username: function(username) {
     if (_.isString(username)) {
 
