@@ -2,11 +2,12 @@ var express = require('express');
 var socketio = require('socket.io');
 var _ = require('underscore');
 
+var port = process.env.PORT || 8080;
 var app = express.createServer();
 var io = socketio.listen(app);
 
-app.listen(8080);
-
+app.listen(port);
+console.log('starting texchat on port ' + port);
 
 // routing
 app.configure(function() {
