@@ -27,6 +27,17 @@ TeXchat is built by [http://github.com/jbenet](Juan Batiz-Benet).
 Then go to [http://localhost:8080/](http://localhost:8080/) in your favorite
 web browser.
 
+## Heroku
+
+TeXchat is ready to be used with heroku. Simply:
+
+    heroku apps:create <app name>
+    git push heroku master
+    heroku ps:scale web=1
+
+Unfortunately Heroku does not support websockets, so TeXchat will default to
+longpolling. Pusher is an addon that supports it, but it is rather pricey. If a
+workaround exists, would be happy to hear about it!
 
 ## License
 
