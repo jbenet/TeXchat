@@ -6,6 +6,13 @@ var port = process.env.PORT || 8080;
 var app = express.createServer();
 var io = socketio.listen(app);
 
+if (!process.env.WEBSOCKETS) {
+  io.configure(function () {
+    io.set("transports", ["xhr-polling"]);
+    io.set("polling duration", 10);
+  });
+};
+
 app.listen(port);
 console.log('starting texchat on port ' + port);
 
